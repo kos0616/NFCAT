@@ -12,8 +12,9 @@
   </head>
   <body>
     <div>
-      <h2>ver 3-1</h2>
+      <h2>ver 3-2</h2>
       <div>
+        <button id="offlineBtn">OFFLINE TEST BTN</button>
         <button id="add-button">INSTALL</button>
       </div>
       <button onclick="sendBtn()" type="button">
@@ -35,6 +36,9 @@
       if ("serviceWorker" in navigator) {
         navigator.serviceWorker.register("./sw.js");
       }
+    </script>
+    <script>
+      document.querySelector("#offlineBtn");
     </script>
   </body>
 </html>
