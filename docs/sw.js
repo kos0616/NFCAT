@@ -1,4 +1,4 @@
-const VERSION = "v5";
+const VERSION = "v7";
 const CACHE_NAME = `nfcat-${VERSION}`;
 
 // Those are all the resources our app needs to work.
