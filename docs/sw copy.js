@@ -1,5 +1,5 @@
 /*
-Copyright 2015, 2019 Google Inc. All Rights Reserved.
+Copyright 2015, 2019, 2020, 2021 Google LLC. All Rights Reserved.
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
@@ -27,6 +27,8 @@ self.addEventListener("install", (event) => {
       await cache.add(new Request(OFFLINE_URL, { cache: "reload" }));
     })()
   );
+  // Force the waiting service worker to become the active service worker.
+  self.skipWaiting();
 });
 
 self.addEventListener("activate", (event) => {
@@ -57,6 +59,7 @@ self.addEventListener("fetch", (event) => {
             return preloadResponse;
           }
 
+          // Always try the network first.
           const networkResponse = await fetch(event.request);
           return networkResponse;
         } catch (error) {
@@ -80,3 +83,19 @@ self.addEventListener("fetch", (event) => {
   // event.respondWith(), the request will be handled by the browser as if there
   // were no service worker involvement.
 });
+
+// cache
+// self.addEventListener("install", (e) => {
+//   e.waitUntil(
+//     caches
+//       .open("nfcat-store")
+//       .then((cache) => cache.addAll(["index.html", "script.js"]))
+//   );
+// });
+
+// self.addEventListener("fetch", (e) => {
+//   alert(e.request.url);
+//   e.respondWith(
+//     caches.match(e.request).then((response) => response || fetch(e.request))
+//   );
+// });
