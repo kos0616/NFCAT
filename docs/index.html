@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="NFC test" />
+    <meta name="theme-color" content="#f97316" />
+    <link rel="manifest" href="./NFCAT/manifest.json" />
+    <title>NFCAT</title>
+    <link rel="icon" href="./NFCAT/favicon.svg" />
+  </head>
+  <body>
+    <div>
+      <button onclick="sendBtn()" type="button">
+        <span id="status">Normal</span>
+        BTN
+      </button>
+      <div id="lastOnline"></div>
+      <article id="result"></article>
+      <button id="scanButton">Scan</button>
+      <button id="writeButton">Write</button>
+      <button id="makeReadOnlyButton">Make Read-Only</button>
+    </div>
+
+    <noscript>
+      此站使用 JavaScript 建置，請開啟 JavaScript 功能以便瀏覽。
+    </noscript>
+    <script src="./NFCAT/script.js"></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("./NFCAT/sw.js");
+      }
+    </script>
+  </body>
+</html>
