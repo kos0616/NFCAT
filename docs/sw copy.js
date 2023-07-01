@@ -1,4 +1,3 @@
-cache;
 self.addEventListener("install", (e) => {
   e.waitUntil(
     caches

@@ -53,17 +53,17 @@ self.addEventListener("activate", (event) => {
 // The static resources fetched here will not have the cache-busting query
 // string. So we need to add it to match the cache.
 self.addEventListener("fetch", (event) => {
-  // const url = new URL(event.request.url);
+  const url = new URL(event.request.url);
 
-  // // Don't care about other-origin URLs.
-  // if (url.origin !== location.origin) {
-  //   return;
-  // }
+  // Don't care about other-origin URLs.
+  if (url.origin !== location.origin) {
+    return;
+  }
 
-  // // Don't care about anything else than GET.
-  // if (event.request.method !== "GET") {
-  //   return;
-  // }
+  // Don't care about anything else than GET.
+  if (event.request.method !== "GET") {
+    return;
+  }
 
   // // Don't care about widget requests.
   // if (url.pathname.includes("/widgets/")) {
