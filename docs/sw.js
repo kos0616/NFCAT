@@ -19,7 +19,7 @@ const INITIAL_CACHED_RESOURCES_WITH_VERSIONS = INITIAL_CACHED_RESOURCES.map(
 // In the latter case, the old SW is kept around until the new one is
 // activated by a new client.
 self.addEventListener("install", (event) => {
-  self.skipWaiting();
+  // self.skipWaiting();
 
   event.waitUntil(
     (async () => {
@@ -32,38 +32,38 @@ self.addEventListener("install", (event) => {
 // Activate happens after install, either when the app is used for the
 // first time, or when a new version of the SW was installed.
 // We use the activate event to delete old caches and avoid running out of space.
-// self.addEventListener("activate", (event) => {
-//   event.waitUntil(
-//     (async () => {
-//       const names = await caches.keys();
-//       await Promise.all(
-//         names.map((name) => {
-//           if (name !== CACHE_NAME) {
-//             return caches.delete(name);
-//           }
-//         })
-//       );
-//       await clients.claim();
-//     })()
-//   );
-// });
+self.addEventListener("activate", (event) => {
+  event.waitUntil(
+    (async () => {
+      const names = await caches.keys();
+      await Promise.all(
+        names.map((name) => {
+          if (name !== CACHE_NAME) {
+            return caches.delete(name);
+          }
+        })
+      );
+      await clients.claim();
+    })()
+  );
+});
 
 // Main fetch handler.
 // A cache-first strategy is used, with a fallback to the network.
 // The static resources fetched here will not have the cache-busting query
 // string. So we need to add it to match the cache.
 self.addEventListener("fetch", (event) => {
-  const url = new URL(event.request.url);
+  // const url = new URL(event.request.url);
 
-  // Don't care about other-origin URLs.
-  if (url.origin !== location.origin) {
-    return;
-  }
+  // // Don't care about other-origin URLs.
+  // if (url.origin !== location.origin) {
+  //   return;
+  // }
 
-  // Don't care about anything else than GET.
-  if (event.request.method !== "GET") {
-    return;
-  }
+  // // Don't care about anything else than GET.
+  // if (event.request.method !== "GET") {
+  //   return;
+  // }
 
   // // Don't care about widget requests.
   // if (url.pathname.includes("/widgets/")) {
