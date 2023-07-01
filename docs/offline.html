@@ -10,7 +10,7 @@
   </head>
   <body>
     <h1>網路斷線中</h1>
-    <h2>v4</h2>
+    <h2>v4-2</h2>
     <p>當連線恢復時，頁面會自動恢復。 或是可以點擊以下重新整理按鈕</p>
     <button id="offlineBtn">OFFLINE TEST BTN</button>
     <button type="button" id="refresh">⤾ 重新整理</button>
@@ -22,9 +22,9 @@
       });
     </script>
     <script>
-      document.querySelector("#refresh").addEventListener("click", () => {
-        window.location.reload();
-      });
+      // document.querySelector("#refresh").addEventListener("click", () => {
+      //   window.location.reload();
+      // });
 
       // Listen to changes in the network state, reload when online.
       // This handles the case when the device is completely offline.
