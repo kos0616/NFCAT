@@ -89,16 +89,7 @@ self.addEventListener("install", (e) => {
   e.waitUntil(
     caches
       .open("nfcat-store")
-      .then((cache) =>
-        cache.addAll([
-          "*",
-          "index.html",
-          "script.js",
-          "/NFCAT/",
-          "/NFCAT/index.html",
-          "/NFCAT/script.js",
-        ])
-      )
+      .then((cache) => cache.addAll(["index.html", "script.js"]))
   );
 });
 
