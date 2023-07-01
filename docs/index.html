@@ -12,7 +12,7 @@
   </head>
   <body>
     <div>
-      <h2>ver 4-3</h2>
+      <h2>ver 4-4</h2>
       <div>
         <button id="offlineBtn">OFFLINE TEST BTN</button>
         <button id="add-button">INSTALL</button>
@@ -40,7 +40,8 @@
     <script>
       const btn = document.querySelector("#offlineBtn");
       btn.addEventListener("click", () => {
-        alert("offline");
+        const status = ONLINE_STATUS | "no status";
+        alert("status is " + status);
       });
     </script>
   </body>
