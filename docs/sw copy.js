@@ -7,7 +7,6 @@
 // });
 
 // self.addEventListener("fetch", (e) => {
-//   alert(e.request.url);
 //   e.respondWith(
 //     caches.match(e.request).then((response) => response || fetch(e.request))
 //   );

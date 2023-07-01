@@ -32,21 +32,21 @@ self.addEventListener("install", (event) => {
 // Activate happens after install, either when the app is used for the
 // first time, or when a new version of the SW was installed.
 // We use the activate event to delete old caches and avoid running out of space.
-self.addEventListener("activate", (event) => {
-  event.waitUntil(
-    (async () => {
-      const names = await caches.keys();
-      await Promise.all(
-        names.map((name) => {
-          if (name !== CACHE_NAME) {
-            return caches.delete(name);
-          }
-        })
-      );
-      await clients.claim();
-    })()
-  );
-});
+// self.addEventListener("activate", (event) => {
+//   event.waitUntil(
+//     (async () => {
+//       const names = await caches.keys();
+//       await Promise.all(
+//         names.map((name) => {
+//           if (name !== CACHE_NAME) {
+//             return caches.delete(name);
+//           }
+//         })
+//       );
+//       await clients.claim();
+//     })()
+//   );
+// });
 
 // Main fetch handler.
 // A cache-first strategy is used, with a fallback to the network.
