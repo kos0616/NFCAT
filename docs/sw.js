@@ -19,7 +19,7 @@ const INITIAL_CACHED_RESOURCES_WITH_VERSIONS = INITIAL_CACHED_RESOURCES.map(
 // In the latter case, the old SW is kept around until the new one is
 // activated by a new client.
 self.addEventListener("install", (event) => {
-  // self.skipWaiting();
+  self.skipWaiting();
 
   event.waitUntil(
     (async () => {
@@ -73,6 +73,11 @@ self.addEventListener("fetch", (event) => {
   // On fetch, go to the cache first, and then network.
   event.respondWith(
     (async () => {
+      const preloadResponse = await event.preloadResponse;
+      if (preloadResponse) {
+        return preloadResponse;
+      }
+
       const cache = await caches.open(CACHE_NAME);
       const versionedUrl = `${event.request.url}?v=${VERSION}`;
       const cachedResponse = await cache.match(versionedUrl);
