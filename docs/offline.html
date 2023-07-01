@@ -13,7 +13,7 @@
     <h2>v4</h2>
     <p>當連線恢復時，頁面會自動恢復。 或是可以點擊以下重新整理按鈕</p>
     <button id="offlineBtn">OFFLINE TEST BTN</button>
-    <button type="button">⤾ 重新整理</button>
+    <button type="button" id="refresh">⤾ 重新整理</button>
     <script>
       const btn = document.querySelector("#offlineBtn");
       btn.addEventListener("click", () => {
@@ -22,7 +22,7 @@
       });
     </script>
     <script>
-      document.querySelector("button").addEventListener("click", () => {
+      document.querySelector("#refresh").addEventListener("click", () => {
         window.location.reload();
       });
 
