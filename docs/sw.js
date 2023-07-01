@@ -1,82 +1,134 @@
-/*
-Copyright 2015, 2019 Google Inc. All Rights Reserved.
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
- http://www.apache.org/licenses/LICENSE-2.0
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
-*/
+const VERSION = "v1";
+const CACHE_NAME = `nfcat-${VERSION}`;
 
-// Incrementing OFFLINE_VERSION will kick off the install event and force
-// previously cached resources to be updated from the network.
-const OFFLINE_VERSION = 2;
-const CACHE_NAME = "offline";
-// Customize this with a different URL if needed.
-const OFFLINE_URL = "offline.html";
+// Those are all the resources our app needs to work.
+// We'll cache them on install.
+const INITIAL_CACHED_RESOURCES = ["./", "./index.html", "script.js"];
 
+// Add a cache-busting query string to the pre-cached resources.
+// This is to avoid loading these resources from the disk cache.
+const INITIAL_CACHED_RESOURCES_WITH_VERSIONS = INITIAL_CACHED_RESOURCES.map(
+  (path) => {
+    return `${path}?v=${VERSION}`;
+  }
+);
+
+// On install, fill the cache with all the resources we know we need.
+// Install happens when the app is used for the first time, or when a
+// new version of the SW is detected by the browser.
+// In the latter case, the old SW is kept around until the new one is
+// activated by a new client.
 self.addEventListener("install", (event) => {
+  self.skipWaiting();
+
   event.waitUntil(
     (async () => {
       const cache = await caches.open(CACHE_NAME);
-      // Setting {cache: 'reload'} in the new request will ensure that the response
-      // isn't fulfilled from the HTTP cache; i.e., it will be from the network.
-      await cache.add(new Request(OFFLINE_URL, { cache: "reload" }));
+      cache.addAll(INITIAL_CACHED_RESOURCES_WITH_VERSIONS);
     })()
   );
 });
 
+// Activate happens after install, either when the app is used for the
+// first time, or when a new version of the SW was installed.
+// We use the activate event to delete old caches and avoid running out of space.
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     (async () => {
-      // Enable navigation preload if it's supported.
-      // See https://developers.google.com/web/updates/2017/02/navigation-preload
-      if ("navigationPreload" in self.registration) {
-        await self.registration.navigationPreload.enable();
+      const names = await caches.keys();
+      await Promise.all(
+        names.map((name) => {
+          if (name !== CACHE_NAME) {
+            return caches.delete(name);
+          }
+        })
+      );
+      await clients.claim();
+    })()
+  );
+});
+
+// Main fetch handler.
+// A cache-first strategy is used, with a fallback to the network.
+// The static resources fetched here will not have the cache-busting query
+// string. So we need to add it to match the cache.
+self.addEventListener("fetch", (event) => {
+  // const url = new URL(event.request.url);
+
+  // // Don't care about other-origin URLs.
+  // if (url.origin !== location.origin) {
+  //   return;
+  // }
+
+  // // Don't care about anything else than GET.
+  // if (event.request.method !== "GET") {
+  //   return;
+  // }
+
+  // // Don't care about widget requests.
+  // if (url.pathname.includes("/widgets/")) {
+  //   return;
+  // }
+
+  // On fetch, go to the cache first, and then network.
+  event.respondWith(
+    (async () => {
+      const cache = await caches.open(CACHE_NAME);
+      const versionedUrl = `${event.request.url}?v=${VERSION}`;
+      const cachedResponse = await cache.match(versionedUrl);
+
+      if (cachedResponse) {
+        return cachedResponse;
+      } else {
+        const fetchResponse = await fetch(versionedUrl);
+        cache.put(versionedUrl, fetchResponse.clone());
+        return fetchResponse;
       }
     })()
   );
-
-  // Tell the active service worker to take control of the page immediately.
-  self.clients.claim();
 });
 
-self.addEventListener("fetch", (event) => {
-  // We only want to call event.respondWith() if this is a navigation request
-  // for an HTML page.
-  if (event.request.mode === "navigate") {
-    event.respondWith(
-      (async () => {
-        try {
-          // First, try to use the navigation preload response if it's supported.
-          const preloadResponse = await event.preloadResponse;
-          if (preloadResponse) {
-            return preloadResponse;
-          }
+// Special fetch handler for song file sharing.
+// self.addEventListener("fetch", (event) => {
+//   const url = new URL(event.request.url);
 
-          const networkResponse = await fetch(event.request);
-          return networkResponse;
-        } catch (error) {
-          // catch is only triggered if an exception is thrown, which is likely
-          // due to a network error.
-          // If fetch() returns a valid HTTP response with a response code in
-          // the 4xx or 5xx range, the catch() will NOT be called.
-          console.log("Fetch failed; returning offline page instead.", error);
+//   if (
+//     event.request.method !== "POST" ||
+//     !url.pathname.includes("/handle-shared-song")
+//   ) {
+//     return;
+//   }
 
-          const cache = await caches.open(CACHE_NAME);
-          const cachedResponse = await cache.match(OFFLINE_URL);
-          return cachedResponse;
-        }
-      })()
-    );
-  }
+//   // Immediately redirect to the start URL, there's nothing to see here.
+//   event.respondWith(Response.redirect("./"));
 
-  // If our if() condition is false, then this fetch handler won't intercept the
-  // request. If there are any other fetch handlers registered, they will get a
-  // chance to call event.respondWith(). If no fetch handlers call
-  // event.respondWith(), the request will be handled by the browser as if there
-  // were no service worker involvement.
-});
+//   event.waitUntil(
+//     (async function () {
+//       const data = await event.request.formData();
+//       const files = data.getAll("audioFiles");
+
+//       // Store the song in a special IDB place for the front-end to pick up later
+//       // when it starts.
+//       // Instead of importing idb-keyval here, we just have a few lines of manual
+//       // IDB code, to store the file in the same keyval store that idb-keyval uses.
+//       const openReq = indexedDB.open("keyval-store");
+//       openReq.onupgradeneeded = (e) => {
+//         const {
+//           target: { result: db },
+//         } = e;
+//         db.createObjectStore("keyval");
+//       };
+//       openReq.onsuccess = (e) => {
+//         const {
+//           target: { result: db },
+//         } = e;
+//         const transaction = db.transaction("keyval", "readwrite");
+//         const store = transaction.objectStore("keyval");
+//         store.put(files, "handle-shared-files");
+//       };
+//     })()
+//   );
+// });
+
+// Handle the mini-player widget updates in another script.
+// importScripts("./sw-widgets.js");
