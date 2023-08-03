@@ -1,3 +1,4 @@
+// https://microsoftedge.github.io/Demos/pwamp/
 const VERSION = "v7";
 const CACHE_NAME = `nfcat-${VERSION}`;
 
@@ -23,8 +24,9 @@ self.addEventListener("install", (event) => {
 
   event.waitUntil(
     (async () => {
-      const cache = await caches.open(CACHE_NAME);
-      cache.addAll(INITIAL_CACHED_RESOURCES_WITH_VERSIONS);
+      caches
+        .open(CACHE_NAME)
+        .then((cache) => cache.addAll(INITIAL_CACHED_RESOURCES_WITH_VERSIONS));
     })()
   );
 });
