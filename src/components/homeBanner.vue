@@ -1,7 +1,7 @@
 <template>
-  <div class="parallax min-h-[calc(100vh-40px)]">
+  <div class="parallax flex min-h-[calc(100vh-40px)] p-5 md:block">
     <article
-      class="absolute right-10 top-1/3 inline-block max-w-md rounded border border-gray-300/20 bg-zinc-800/60 p-10 backdrop-brightness-50 backdrop-grayscale"
+      class="mx-auto inline-block max-w-md self-center justify-self-center rounded border border-gray-300/20 bg-zinc-800/60 p-10 backdrop-brightness-50 backdrop-grayscale md:absolute md:right-10 md:top-1/3"
     >
       <strong class="text-sm">
         Connecting You and Technology with
@@ -31,11 +31,7 @@
   background-image: url(../assets/image/dot.svg), url(../assets/image/banner2.webp);
   background-repeat: repeat, no-repeat;
   @apply bg-[size:auto,cover];
-  @apply relative bg-fixed bg-center;
+  /** fixing small device bg-fixed not working */
+  @apply relative bg-center md:bg-fixed;
 }
 </style>
-
-<!-- &::before {
-  background-image: url(../assets/image/dot.svg);
-  @apply content-[''] block absolute w-full h-full left-0 right-0 top-0 bottom-0;
-} -->

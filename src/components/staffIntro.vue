@@ -1,11 +1,11 @@
 <template>
-  <div class="innerShadowY p-3 py-24 dark:bg-zinc-700">
+  <div class="innerShadowY p-3 py-10 dark:bg-zinc-700 sm:py-24">
     <article class="container mx-auto">
       <div class="mb-10 text-center text-[150%]">
-        <h2 class="text-white">Staff Introduction</h2>
+        <h2 class="text-white">Our Staff</h2>
       </div>
 
-      <div class="grid-cols-2 gap-8 md:grid">
+      <div class="md:grid-cols-2 gap-8 grid">
         <div class="mb-5 gap-4 sm:flex md:mb-0">
           <figure class="shrink-0 text-center sm:text-left lg:order-last">
             <img

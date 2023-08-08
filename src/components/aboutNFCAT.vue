@@ -30,52 +30,54 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div
-    class="bg relative flex aspect-[4/3] items-center overflow-hidden py-10 landscape:aspect-auto"
-  >
-    <img
-      ref="REF_MOBILE"
-      src="../assets/image/mobile.webp"
-      alt="smart phone"
-      width="250"
-      height="506"
-      class="absolute -right-[100px] top-1/2 -translate-y-1/2 rotate-12 transition-transform duration-1000 ease-in xl:right-0"
-    />
-    <article
-      class="mx-auto max-w-md rounded border border-stone-400/50 p-10 backdrop-blur-sm backdrop-brightness-50 backdrop-grayscale-[50%] xl:px-20"
-    >
-      <table class="mb-10 text-[150%] drop-shadow">
-        <caption class="text-left">
-          <h2 class="py-5 leading-8"><small>what's</small> NFCAT?</h2>
-        </caption>
-        <tbody>
-          <tr>
-            <th class="pb-1 pr-3 font-serif text-5xl text-[color:var(--color-primary)]">N</th>
-            <td>Near</td>
-          </tr>
-          <tr>
-            <th class="pb-1 pr-3 font-serif text-5xl text-[color:var(--color-primary)]">F</th>
-            <td>Field</td>
-          </tr>
-          <tr>
-            <th class="pb-1 pr-3 font-serif text-5xl text-[color:var(--color-primary)]">C</th>
-            <td>Communication</td>
-          </tr>
-          <tr>
-            <th class="pb-1 pr-3 font-serif text-5xl text-[color:var(--color-primary)]">A</th>
-            <td>Advanced</td>
-          </tr>
-          <tr>
-            <th class="pb-1 pr-3 font-serif text-5xl text-[color:var(--color-primary)]">T</th>
-            <td>Technology</td>
-          </tr>
-        </tbody>
-      </table>
+  <div class="bg items-centermd:aspect-[4/3] relative overflow-hidden py-10 landscape:aspect-auto">
+    <div class="container mx-auto">
+      <div class="flex">
+        <img
+          ref="REF_MOBILE"
+          src="../assets/image/mobile.webp"
+          alt="smart phone"
+          width="250"
+          height="506"
+          class="absolute -right-[100px] top-1/2 hidden -translate-y-1/2 rotate-12 transition-transform duration-1000 ease-in sm:block xl:right-0"
+        />
+        <article
+          class="mx-auto max-w-md rounded border border-stone-400/50 p-10 backdrop-blur backdrop-brightness-50 backdrop-grayscale-[50%] md:backdrop-blur-sm xl:px-20"
+        >
+          <table class="mb-10 text-[150%] drop-shadow">
+            <caption class="text-left">
+              <h2 class="py-5 leading-8"><small>what's</small> NFCAT?</h2>
+            </caption>
+            <tbody>
+              <tr>
+                <th class="pb-1 pr-3 font-serif text-5xl text-[color:var(--color-primary)]">N</th>
+                <td>Near</td>
+              </tr>
+              <tr>
+                <th class="pb-1 pr-3 font-serif text-5xl text-[color:var(--color-primary)]">F</th>
+                <td>Field</td>
+              </tr>
+              <tr>
+                <th class="pb-1 pr-3 font-serif text-5xl text-[color:var(--color-primary)]">C</th>
+                <td>Communication</td>
+              </tr>
+              <tr>
+                <th class="pb-1 pr-3 font-serif text-5xl text-[color:var(--color-primary)]">A</th>
+                <td>Advanced</td>
+              </tr>
+              <tr>
+                <th class="pb-1 pr-3 font-serif text-5xl text-[color:var(--color-primary)]">T</th>
+                <td>Technology</td>
+              </tr>
+            </tbody>
+          </table>
 
-      <p class="text-center">
-        Unleash the Full Potential of NFC Technology with NFCAT. Empower your Business Today!
-      </p>
-    </article>
+          <p class="text-center">
+            Unleash the Full Potential of NFC Technology with NFCAT. Empower your Business Today!
+          </p>
+        </article>
+      </div>
+    </div>
   </div>
 </template>
 

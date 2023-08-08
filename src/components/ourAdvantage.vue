@@ -35,7 +35,7 @@ onUnmounted(() => {
         </h2>
       </div>
 
-      <ol class="advantage grid grid-cols-3 gap-8">
+      <ol class="advantage grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3">
         <li class="advantage-item">
           <strong class="advantage-title">Seamless NFC Scanning</strong>
           Experience a smooth and hassle-free NFC scanning process with NFCAT. Our cutting-edge
@@ -85,7 +85,7 @@ onUnmounted(() => {
 <style lang="postcss" scoped>
 .bg {
   background-image: url(../assets/image/1506.jpg);
-  @apply bg-cover bg-fixed bg-left-top;
+  @apply bg-cover bg-left-top md:bg-fixed;
 }
 .advantage {
   .advantage-item {

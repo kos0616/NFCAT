@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router';
-import HelloWorld from './components/HelloWorld.vue';
+import { RouterView } from 'vue-router';
 </script>
 
-<!-- <img src="@/assets/image/banner.webp" alt="" /> -->
 <template>
-  <header class="sticky top-0 z-20 bg-[color:var(--color-header)] py-2">
+  <header class="sticky top-0 z-20 bg-[color:var(--color-header)]">
     <div class="container mx-auto flex">
       <h1 class="brand mr-auto text-white">NFCAT</h1>
       <nav>
