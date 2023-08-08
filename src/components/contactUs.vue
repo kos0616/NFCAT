@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="relative">
+    <div class="bg-grid absolute inset-0"></div>
     <article class="container mx-auto py-10 lg:py-24">
       <div class="gap-8 lg:grid lg:grid-cols-2">
         <div>
@@ -10,17 +11,13 @@
             professional advice. Let's work together to create more innovative NFC experiences!
           </p>
           <div class="my-3 p-3">
-            <img
-              src="../assets/image/touch.webp"
-              alt="Cat caw"
-              class="mx-auto overflow-hidden rounded-xl border-2 border-white/70"
-            />
+            <img src="../assets/image/touch.webp" alt="Cat caw" class="mx-auto" />
           </div>
         </div>
 
         <div class="relative flex flex-col justify-center overflow-hidden">
           <div
-            class="border border-gray-400/75 bg-zinc-600/75 p-6 shadow-xl ring-1 ring-gray-900/5 sm:rounded-xl"
+            class="bg-zinc-600/75 p-6 shadow-xl ring-1 ring-gray-900/5 backdrop-blur-sm sm:rounded-xl"
           >
             <p class="text-[color:var(--color-primary)]">
               We value each of your messages and promise to respond with sincerity.
@@ -90,6 +87,11 @@
 </template>
 
 <style lang="postcss">
+.bg-grid {
+  background-image: url(../assets/image/grid.svg);
+  mask-image: linear-gradient(180deg, #ffffff33, rgba(255, 255, 255, 0));
+}
+
 .input {
   @apply mt-1 w-full border-b-2 border-gray-300 bg-zinc-700 px-2 py-1 transition-colors placeholder:text-transparent focus:border-[color:var(--color-primary)] focus:bg-zinc-800 focus:outline-none;
 }
