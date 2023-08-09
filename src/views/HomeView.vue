@@ -7,11 +7,13 @@ import myFooter from '../components/myFooter.vue';
 import ADFree from '../components/adFree.vue';
 import nfcat from '../components/aboutNFCAT.vue';
 import advantage from '../components/ourAdvantage.vue';
+import example from '../components/NFCExample.vue';
 </script>
 
 <template>
   <main id="home">
     <banner></banner>
+    <example id="start"></example>
     <nfcat></nfcat>
     <ADFree></ADFree>
     <about></about>
