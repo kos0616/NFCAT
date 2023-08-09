@@ -5,7 +5,7 @@
         <h2 class="text-white">Our Staff</h2>
       </div>
 
-      <div class="md:grid-cols-2 gap-8 grid">
+      <div class="grid gap-8 md:grid-cols-2">
         <div class="mb-5 gap-4 sm:flex md:mb-0">
           <figure class="shrink-0 text-center sm:text-left lg:order-last">
             <img

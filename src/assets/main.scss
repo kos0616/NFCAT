@@ -31,7 +31,7 @@
 }
 
 .container {
-  @apply px-2 sm:px-0
+  @apply px-2 sm:px-0;
 }
 
 .innerShadowY {
@@ -41,8 +41,11 @@
 }
 
 .btn {
-  @apply rounded-md px-3 py-2 focus:outline-none;
+  @apply rounded-md border border-white px-3 py-2 hover:bg-slate-800/75 focus:outline-none;
+  & ~ .btn {
+    @apply ml-2;
+  }
   &.btn-primary {
-    @apply bg-[color:var(--color-primary)] text-[color:var(--color-text-dark)] hover:bg-[color:var(--color-primary-dark-1)];
+    @apply border-transparent bg-[color:var(--color-primary)] text-[color:var(--color-text-dark)] hover:bg-[color:var(--color-primary-dark-1)];
   }
 }

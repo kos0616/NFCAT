@@ -1,6 +1,6 @@
 <template>
   <div class="container mx-auto">
-    <article id="about" class="sm:grid grid-cols-2 py-5">
+    <article id="about" class="grid-cols-2 py-5 sm:grid">
       <div class="relative h-48">
         <div class="absolute left-1/2 -translate-x-1/2 -rotate-[30deg]">
           <div class="photo">
