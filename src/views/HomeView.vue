@@ -16,10 +16,10 @@ import example from '../components/NFCExample.vue';
     <example id="start"></example>
     <nfcat></nfcat>
     <ADFree></ADFree>
-    <about></about>
+    <about id="about"></about>
     <advantage></advantage>
     <staff></staff>
-    <contact></contact>
+    <contact id="contact"></contact>
     <myFooter></myFooter>
   </main>
 </template>

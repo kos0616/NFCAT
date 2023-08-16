@@ -10,7 +10,9 @@ initNetworkStatus();
       <h1 class="brand mr-auto text-white">NFCAT</h1>
       <nav>
         <a href="#home" class="home-nav-link">Home</a>
+        <a href="#start" class="home-nav-link">Start</a>
         <a href="#about" class="home-nav-link">About</a>
+        <a href="#contact" class="home-nav-link">Contact</a>
       </nav>
     </div>
   </header>

@@ -89,7 +89,7 @@ onUnmounted(() => {
 }
 .advantage {
   .advantage-item {
-    @apply rounded border border-stone-600/50 bg-slate-800/25 px-8 py-8 backdrop-blur-sm;
+    @apply rounded border border-stone-600/50 bg-slate-800/25 px-8 py-8 backdrop-blur-sm transition-colors hover:bg-slate-800/70;
     .advantage-title {
       @apply mb-2 block text-lg text-white;
     }
