@@ -5,7 +5,7 @@
     >
       <strong class="text-sm">
         Connecting You and Technology with
-        <span class="text-[color:var(--color-primary)]">Cat</span>'s Heart
+        <span class="text-primary">Cat</span>'s Heart
       </strong>
       <h2 class="text-white">Explore a New NFC Experience</h2>
       <p class="mb-5">
@@ -17,7 +17,7 @@
       <a
         href="#start"
         title="Start expoloring"
-        class="peer mb-1 inline-block rounded bg-[color:var(--color-primary)] px-3 py-2 font-bold text-zinc-600 transition-colors hover:bg-[color:var(--color-primary-light-1)] hover:text-stone-700"
+        class="peer mb-1 inline-block rounded bg-primary px-3 py-2 font-bold text-zinc-600 transition-colors hover:bg-[color:var(--color-primary-light-1)] hover:text-stone-700"
       >
         Meow
       </a>

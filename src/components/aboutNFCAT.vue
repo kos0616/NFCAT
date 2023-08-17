@@ -50,23 +50,23 @@ onUnmounted(() => {
             </caption>
             <tbody>
               <tr>
-                <th class="pb-1 pr-3 font-serif text-5xl text-[color:var(--color-primary)]">N</th>
+                <th class="pb-1 pr-3 font-serif text-5xl text-primary">N</th>
                 <td>Near</td>
               </tr>
               <tr>
-                <th class="pb-1 pr-3 font-serif text-5xl text-[color:var(--color-primary)]">F</th>
+                <th class="pb-1 pr-3 font-serif text-5xl text-primary">F</th>
                 <td>Field</td>
               </tr>
               <tr>
-                <th class="pb-1 pr-3 font-serif text-5xl text-[color:var(--color-primary)]">C</th>
+                <th class="pb-1 pr-3 font-serif text-5xl text-primary">C</th>
                 <td>Communication</td>
               </tr>
               <tr>
-                <th class="pb-1 pr-3 font-serif text-5xl text-[color:var(--color-primary)]">A</th>
+                <th class="pb-1 pr-3 font-serif text-5xl text-primary">A</th>
                 <td>Advanced</td>
               </tr>
               <tr>
-                <th class="pb-1 pr-3 font-serif text-5xl text-[color:var(--color-primary)]">T</th>
+                <th class="pb-1 pr-3 font-serif text-5xl text-primary">T</th>
                 <td>Technology</td>
               </tr>
             </tbody>

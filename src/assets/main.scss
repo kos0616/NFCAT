@@ -46,6 +46,6 @@
     @apply ml-2;
   }
   &.btn-primary {
-    @apply border-transparent bg-[color:var(--color-primary)] text-[color:var(--color-text-dark)] hover:bg-[color:var(--color-primary-dark-1)];
+    @apply border-transparent bg-primary text-[color:var(--color-text-dark)] hover:bg-[color:var(--color-primary-dark-1)];
   }
 }

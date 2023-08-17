@@ -19,7 +19,7 @@
           <div
             class="bg-zinc-600/75 p-6 shadow-xl ring-1 ring-gray-900/5 backdrop-blur-sm sm:rounded-xl"
           >
-            <p class="text-[color:var(--color-primary)]">
+            <p class="text-primary">
               We value each of your messages and promise to respond with sincerity.
             </p>
             <form action="#">
@@ -93,19 +93,19 @@
 }
 
 .input {
-  @apply mt-1 w-full border-b-2 border-gray-300 bg-zinc-700 px-2 py-1 transition-colors placeholder:text-transparent focus:border-[color:var(--color-primary)] focus:bg-zinc-800 focus:outline-none;
+  @apply mt-1 w-full border-b-2 border-gray-300 bg-zinc-700 px-2 py-1 transition-colors placeholder:text-transparent focus:border-primary focus:bg-zinc-800 focus:outline-none;
 }
 
 .form-item {
   @apply relative mb-3 mt-6;
 
   & > .form-item--label {
-    @apply pointer-events-none absolute -top-2 left-2 origin-left -translate-y-1/2 transform pl-0 text-sm text-[color:var(--color-primary)] transition-all duration-100 ease-in-out;
+    @apply pointer-events-none absolute -top-2 left-2 origin-left -translate-y-1/2 transform pl-0 text-sm text-primary transition-all duration-100 ease-in-out;
   }
 
   & > .form-item--input,
   & > .form-item--select {
-    @apply mt-1 w-full border-b-2 border-gray-300 bg-zinc-700 px-2 py-1 text-white transition-colors placeholder:text-transparent focus:border-[color:var(--color-primary)] focus:bg-zinc-800 focus:outline-none;
+    @apply mt-1 w-full border-b-2 border-gray-300 bg-zinc-700 px-2 py-1 text-white transition-colors placeholder:text-transparent focus:border-primary focus:bg-zinc-800 focus:outline-none;
   }
 
   & > .form-item--input:placeholder-shown ~ .form-item--label {

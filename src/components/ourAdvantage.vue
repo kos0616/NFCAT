@@ -31,7 +31,7 @@ onUnmounted(() => {
       <div class="mb-10 text-center text-[150%]">
         <strong class="mb-0">Embrace the Power of NFC Technology</strong>
         <h2 class="text-white">
-          Discover the <b class="text-[color:var(--color-primary)]">NFCAT</b> Advantage
+          Discover the <b class="text-primary">NFCAT</b> Advantage
         </h2>
       </div>
 
