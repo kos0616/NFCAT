@@ -1,5 +1,5 @@
 {
-  "name": "NFCAT TEST PAGE",
+  "name": "NFCAT",
   "short_name": "NFCAT",
   "icons": [
     {
@@ -10,8 +10,15 @@
       "purpose": "maskable"
     },
     {
+      "//": "iphone",
+      "src": "./apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
       "//": "for Mac OS, a no purpose icon is required",
       "src": "./pwa_icon.svg",
+      "type": "image/svg+xml",
       "sizes": "512x512"
     }
   ],
