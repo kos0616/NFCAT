@@ -1,20 +1,22 @@
 {
-  "name": "NFCAT TEST PAGE",
+  "name": "NFCAT",
   "short_name": "NFCAT",
   "icons": [
     {
-      "src": "./apple-touch-icon-192x192.png",
+      "//": "Chrome APP & Windows desk & mobile, maskable to fit container",
+      "src": "./maskable_icon_x192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "maskable"
     },
     {
-      "src": "./apple-touch-icon-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png"
+      "//": "for Mac OS, a no purpose icon is required",
+      "src": "./pwa_icon.svg",
+      "sizes": "512x512"
     }
   ],
   "start_url": "./",
   "display": "standalone",
   "background_color": "#333",
-  "theme_color": "#aaa"
+  "theme_color": "#27272a"
 }

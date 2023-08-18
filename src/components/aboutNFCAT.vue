@@ -14,8 +14,6 @@ const initParallax = (isInit = true) => {
   if (isInit === true) {
     observer.observe(element);
   } else {
-    console.log('un');
-
     observer.unobserve(element);
   }
 };
