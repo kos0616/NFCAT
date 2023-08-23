@@ -49,3 +49,9 @@
     @apply border-transparent bg-primary text-[color:var(--color-text-dark)] hover:bg-[color:var(--color-primary-dark-1)];
   }
 }
+.btn-group {
+  @apply flex;
+  .btn {
+    @apply m-0 rounded-none border-r-0 last:rounded-r last:border-r first-of-type:rounded-l;
+  }
+}

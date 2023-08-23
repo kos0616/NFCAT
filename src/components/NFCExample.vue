@@ -1,98 +1,101 @@
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue';
-import { useCounterStore } from '@/stores/counter';
+import { computed, onMounted, ref } from 'vue';
+import { useNetworkStatusStore } from '@/stores/networkStatus';
 
-type onlineStatus = 'Online' | 'Offline' | 'Reconnected' | 'Disconnected Offline';
+const networkStatusStore = useNetworkStatusStore();
 
-const ONLINE_STATUS = window.navigator.onLine === true ? 'Online' : 'Offline';
-const status = ref<onlineStatus>(ONLINE_STATUS);
-const lastOnline = ref('');
 const results = ref<string[]>([]);
-
-const counter = useCounterStore();
+const connectionStatus = computed(() => networkStatusStore.connectionStatus);
+const lastOnline = computed(() => networkStatusStore.lastConnectionDate);
 
 const sendData = () => {
-  if (status.value === 'Offline') {
+  if (connectionStatus.value === 'disconnected') {
     offlineStorage();
     return;
   }
   results.value.unshift('Data submit successed!');
-
   function offlineStorage() {
-    const day = new Date().toLocaleTimeString();
-    localStorage.setItem('lastOnline', day);
-    lastOnline.value = `SAVE DATA, Last Online: ${day}`;
+    results.value.unshift('Data submit failed! ' + lastOnline.value);
   }
 };
 
-function log(str: string) {
-  results.value.unshift(str);
-}
+const log = (str: string) => results.value.unshift(str);
 
-if (!('NDEFReader' in window)) {
-  log('Web NFC is not available. Use Chrome on Android.');
-}
+onMounted(() => {
+  if (!('NDEFReader' in window)) {
+    log('Web NFC is not available. Use Chrome on Android.');
+  }
+});
 
-// scanButton.addEventListener('click', async () => {
-//   log('User clicked scan button');
+const handleScan = async () => {
+  log('User clicked scan button');
+  try {
+    const ndef = new NDEFReader();
+    await ndef.scan();
+    log('> Scan started');
 
-//   try {
-//     const ndef = new NDEFReader();
-//     await ndef.scan();
-//     log('> Scan started');
+    ndef.addEventListener('readingerror', () => {
+      log('Argh! Cannot read data from the NFC tag. Try another one?');
+    });
 
-//     ndef.addEventListener('readingerror', () => {
-//       log('Argh! Cannot read data from the NFC tag. Try another one?');
-//     });
+    ndef.addEventListener('reading', ({ message, serialNumber }: any) => {
+      log(`> Serial Number: ${serialNumber}`);
+      log(`> Records: (${message.records.length})`);
+    });
+  } catch (error) {
+    log('Argh! ' + error);
+  }
+};
 
-//     ndef.addEventListener('reading', ({ message, serialNumber }) => {
-//       log(`> Serial Number: ${serialNumber}`);
-//       log(`> Records: (${message.records.length})`);
-//     });
-//   } catch (error) {
-//     log('Argh! ' + error);
-//   }
-// });
+const handleWrite = async () => {
+  log('User clicked write button');
 
-// writeButton.addEventListener('click', async () => {
-//   log('User clicked write button');
+  try {
+    const ndef = new NDEFReader();
+    await ndef.write('Hello world!');
+    log('> Message written');
+  } catch (error) {
+    log('Argh! ' + error);
+  }
+};
 
-//   try {
-//     const ndef = new NDEFReader();
-//     await ndef.write('Hello world!');
-//     log('> Message written');
-//   } catch (error) {
-//     log('Argh! ' + error);
-//   }
-// });
+const handleMakeReadOnly = async () => {
+  log('User clicked make read-only button');
 
-// makeReadOnlyButton.addEventListener('click', async () => {
-//   log('User clicked make read-only button');
-
-//   try {
-//     const ndef = new NDEFReader();
-//     await ndef.makeReadOnly();
-//     log('> NFC tag has been made permanently read-only');
-//   } catch (error) {
-//     log('Argh! ' + error);
-//   }
-// });
-const aa = import.meta.env;
-console.log(aa);
+  try {
+    const ndef = new NDEFReader();
+    await ndef.makeReadOnly();
+    log('> NFC tag has been made permanently read-only');
+  } catch (error) {
+    log('Argh! ' + error);
+  }
+};
 </script>
 <template>
-  <div class="py-20">
-    <button @click="sendData" type="button" class="btn">
-      <span id="status">{{ status }}</span>
-      BTN
-      {{ counter }}
-      {{ aa }}
-    </button>
+  <div class="container mx-auto py-20">
+    <h2>NFC testing area</h2>
+    <div class="grid-cols-2 lg:grid">
+      <div>
+        <div class="py-3">
+          <div><strong>Connection Status:</strong> {{ connectionStatus }}</div>
+          <div v-if="lastOnline"><strong>Last online:</strong> {{ lastOnline }}</div>
+        </div>
 
-    <div>{{ lastOnline }}</div>
-    <article>{{ results }}</article>
-    <!-- <button id="scanButton">Scan</button>
-    <button id="writeButton">Write</button>
-    <button id="makeReadOnlyButton">Make Read-Only</button> -->
+        <div class="btn-group">
+          <button @click="sendData" type="button" class="btn">Test submit</button>
+          <button @click="handleScan" class="btn">Scan</button>
+          <button @click="handleWrite" class="btn">Write</button>
+          <button @click="handleMakeReadOnly" class="btn">Make Read-Only</button>
+        </div>
+      </div>
+
+      <article class="max-h-40 overflow-y-scroll rounded border border-white/25 p-3">
+        <ol>
+          <li v-for="(str, i) in results" :key="`log${i}`">
+            {{ str }}
+          </li>
+        </ol>
+      </article>
+    </div>
   </div>
 </template>

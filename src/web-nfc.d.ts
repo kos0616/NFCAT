@@ -52,6 +52,7 @@ declare class NDEFReader extends EventTarget {
   onreadingerror: (this: this, error: Event) => any;
   scan: (options?: NDEFScanOptions) => Promise<void>;
   write: (message: NDEFMessageSource, options?: NDEFWriteOptions) => Promise<void>;
+  makeReadOnly: (options?: NDEFMakeReadOnlyOptions) => Promise<void>;
 }
 
 interface Window {
@@ -69,6 +70,9 @@ interface NDEFReadingEventInit extends EventInit {
 
 interface NDEFWriteOptions {
   overwrite?: boolean;
+  signal?: AbortSignal;
+}
+interface NDEFMakeReadOnlyOptions {
   signal?: AbortSignal;
 }
 interface NDEFScanOptions {

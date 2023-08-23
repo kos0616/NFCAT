@@ -13,11 +13,11 @@ import example from '../components/NFCExample.vue';
 <template>
   <main id="home">
     <banner></banner>
-    <example id="start"></example>
     <nfcat></nfcat>
     <ADFree></ADFree>
     <about id="about"></about>
     <advantage></advantage>
+    <example id="start"></example>
     <staff></staff>
     <contact id="contact"></contact>
     <myFooter></myFooter>
