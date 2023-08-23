@@ -14,7 +14,7 @@ export default defineConfig(({ mode }) => ({
     }
   },
   define: { __Admin_VERSION__: JSON.stringify(process.env.npm_package_version) },
-  base: mode === 'production' ? './' : '/',
+  base: mode === 'production' ? '/NFCAT/' : '/',
   build: {
     outDir: 'docs'
   }
