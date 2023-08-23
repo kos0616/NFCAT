@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="zh-Hant-TW">
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="description" content="NFC test page" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="NFCAT" />
     <link rel="manifest" href="./manifest.json" />
     <title>NFCAT</title>
     <link rel="icon" href="./favicon.svg" />
@@ -15,38 +15,16 @@
     <link rel="mask-icon" href="./safari-pinned-tab.svg" color="#fbbf24" />
     <!-- windows home screen app top bar color-->
     <meta name="msapplication-TileColor" content="#27272a" />
+    <script type="module" crossorigin src="./assets/index-50972cc9.js"></script>
+    <link rel="stylesheet" href="./assets/index-3a7c23bc.css">
   </head>
   <body>
-    <div>
-      <h2>ver 7</h2>
-      <div>
-        <button id="offlineBtn">OFFLINE TEST BTN</button>
-        <button id="add-button">INSTALL</button>
-      </div>
-      <button onclick="sendBtn()" type="button">
-        <span id="status">Normal</span>
-        BTN
-      </button>
-      <div id="lastOnline"></div>
-      <article id="result"></article>
-      <button id="scanButton">Scan</button>
-      <button id="writeButton">Write</button>
-      <button id="makeReadOnlyButton">Make Read-Only</button>
-    </div>
-
-    <noscript> 此站使用 JavaScript 建置，請開啟 JavaScript 功能以便瀏覽。 </noscript>
-    <script src="./script.js"></script>
-    <script>
+    <div id="app"></div>
+    
+    <!-- <script>
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('./sw.js');
       }
-    </script>
-    <script>
-      const btn = document.querySelector('#offlineBtn');
-      btn.addEventListener('click', () => {
-        const status = ONLINE_STATUS | 'no status';
-        alert('status is ' + status);
-      });
-    </script>
+    </script> -->
   </body>
 </html>

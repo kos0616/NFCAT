@@ -12,8 +12,9 @@ export default defineConfig(({ mode }) => ({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
-  base: mode === 'production' ? './' : '/'
-  // build: {
-  //   outDir: 'dista'
-  // }
+  define: { __Admin_VERSION__: JSON.stringify(process.env.npm_package_version) },
+  base: mode === 'production' ? './' : '/',
+  build: {
+    outDir: 'docs'
+  }
 }));
