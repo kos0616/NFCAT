@@ -1,5 +1,5 @@
 <template>
-  <div class="parallax flex min-h-[calc(100vh-40px)] p-5 md:block">
+  <div class="parallax flex p-5 md:block">
     <article
       class="mx-auto inline-block max-w-md self-center justify-self-center rounded border border-gray-300/20 bg-zinc-800/60 p-10 backdrop-brightness-50 backdrop-grayscale md:absolute md:right-10 md:top-1/3"
     >
@@ -28,6 +28,7 @@
 
 <style scoped lang="postcss">
 .parallax {
+  height: min(calc(100vh - 40px), 1200px);
   background-image: url(../assets/image/dot.svg), url(../assets/image/banner2.webp);
   background-repeat: repeat, no-repeat;
   @apply bg-[size:auto,cover];
