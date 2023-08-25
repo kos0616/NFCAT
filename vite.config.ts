@@ -11,36 +11,7 @@ export default defineConfig(({ mode }) => ({
     vue(),
     loadVersion(),
     VitePWA({
-      // includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg'],
-      manifest: {
-        name: 'NFCAT',
-        short_name: 'NFCAT',
-        icons: [
-          {
-            '//': 'Chrome APP & Windows desk & mobile, maskable to fit container',
-            src: './maskable_icon_x192.png',
-            sizes: '192x192',
-            type: 'image/png',
-            purpose: 'maskable'
-          },
-          {
-            '//': 'iphone',
-            src: './apple-touch-icon.png',
-            sizes: '180x180',
-            type: 'image/png'
-          },
-          {
-            '//': 'for Mac OS, a no purpose icon is required',
-            src: './pwa_icon.svg',
-            type: 'image/svg+xml',
-            sizes: '512x512'
-          }
-        ],
-        start_url: './',
-        display: 'standalone',
-        background_color: '#333',
-        theme_color: '#27272a'
-      }
+      manifest: false
     })
   ],
   server: { host: '0.0.0.0' },
