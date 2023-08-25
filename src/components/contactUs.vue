@@ -105,7 +105,7 @@
 
   & > .form-item--input,
   & > .form-item--select {
-    @apply mt-1 w-full border-b-2 border-gray-300 bg-zinc-700 px-2 py-1 text-white transition-colors placeholder:text-transparent focus:border-primary focus:bg-zinc-800 focus:outline-none;
+    @apply mt-1 w-full rounded-none border-b-2 border-gray-300 bg-zinc-700 px-2 py-1 text-white transition-colors placeholder:text-transparent focus:border-primary focus:bg-zinc-800 focus:outline-none;
   }
 
   & > .form-item--input:placeholder-shown ~ .form-item--label {

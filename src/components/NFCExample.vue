@@ -81,11 +81,11 @@ const handleMakeReadOnly = async () => {
           <div v-if="lastOnline"><strong>Last online:</strong> {{ lastOnline }}</div>
         </div>
 
-        <div class="btn-group">
-          <button @click="sendData" type="button" class="btn">Test submit</button>
-          <button @click="handleScan" class="btn">Scan</button>
-          <button @click="handleWrite" class="btn">Write</button>
-          <button @click="handleMakeReadOnly" class="btn">Make Read-Only</button>
+        <div class="lg:btn-group my-4 grid grid-cols-2 gap-4 lg:gap-0">
+          <button @click="sendData" type="button" class="btn !m-0">Test submit</button>
+          <button @click="handleScan" class="btn !m-0">Scan</button>
+          <button @click="handleWrite" class="btn !m-0">Write</button>
+          <button @click="handleMakeReadOnly" class="btn !m-0">Make Read-Only</button>
         </div>
       </div>
 
