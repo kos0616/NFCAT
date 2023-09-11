@@ -25,5 +25,6 @@
   "start_url": "./",
   "display": "standalone",
   "background_color": "#333",
-  "theme_color": "#27272a"
+  "theme_color": "#27272a",
+  "description": "Sample example web page. Not real company."
 }
